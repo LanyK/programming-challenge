@@ -1,11 +1,8 @@
 package de.exxcellent.challenge;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 /**
  * Data class representing a fixed size 2D table of data, optionally with column names.<br> 
