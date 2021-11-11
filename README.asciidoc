@@ -1,9 +1,32 @@
 = Weatherdata challenge solution
 
-This branch is the 'master' branch for the solution of this coding challenge.
-Development will happen on `challenge-weatherdata-dev`.
+This branch is the development branch for the solution of this coding challenge.
+(Partial) solutions will be merged into `challenge-weatherdata-solution`. 
 
-= eXXcellent programming challenge
+== Program Architecture
+
+This solution tries to encapsulate the different mechanism involved in this task:
+- Loading table data from ouside the java program itself
+- Storing the table data in memory for access by other program parts
+- Accessing the table data to perform arbitrary (query) tasks
+- Handling program flow in the form of command line argument based execution directives
+
+**DataLoader** is an interface providing the needed behavior to load an external table-like data source and provide a simple and slim API to request that data: A DataLoader implementation's API provides methods for accessing table header lines as well as a Stream of table rows.
+
+**FixedSizeTable** is a minimal implementation of a in-memory table. It provides easy methods for both setting column header data, as well as populating it with rows. Basic query methods allow access to rows, columns and fields.
+
+**ChallengeTaskExecutor** is a controller object interpreting the command line arguments to initiate the construction and relay of the in-memory data table as well as dispatching the command to a registered **ChallengeTask** implementation, which then in turn can do it's associated table query.
+
+This flow is easily extendable via registering new **ChallengeTask** implementations, creating alternate **DataLoader** implementations for different data sources, or via reducing the existing constraints in the internal Table implementation.
+
+Unit tests were implemented to test all components.
+
+
+
+-- Original README below --
+
+
+== eXXcellent programming challenge
 
 This repository provides the project scaffold for a simple
 programming challenge. Though the challenge is very simple
@@ -16,7 +39,7 @@ document completely and carefully! It describes important
 parts of the challenge.
 
 
-== Goal
+=== Goal
 
 Implement a solution for the given tasks which aims for
 
@@ -35,13 +58,13 @@ idea and process.
 
 
 
-== Tasks
+=== Tasks
 
-=== Time estimation
+==== Time estimation
 Between ~1.5 hour up to ~4 hours,  +
 depending on your previous experience & development environment.
 
-=== Task
+==== Task
 
 Weather::
     In `weather.csv` you’ll find the daily weather data of a single month.
@@ -72,7 +95,7 @@ Process::
 * Try to follow a test-driven development approach.
 
 
-=== Hints
+==== Hints
 
 Your solution should focus on **maintainability**, **reusability** and
 **readability**. Here are some hints on how you may achieve these goals:
@@ -102,19 +125,19 @@ Your solution should focus on **maintainability**, **reusability** and
    a specific matter** each (e.g a feature). Try to make the commit messages
    as expressive as possible, so a reader knows what a commit does.
 
-== Getting started
+=== Getting started
 
-=== Install Java
+==== Install Java
 For this project, the Java Development Kit 11 or above is required. You can download it from https://adoptopenjdk.net/.
 
-=== Getting a copy
+==== Getting a copy
 The starting point for every challenge is provided as a branch in a Gitlab.com/GitHub
 hosted Git repository. Be careful to adjust the URLs below
 accordingly.
 
 To start
 
-=== Fork or directly clone the repository
+==== Fork or directly clone the repository
 
 ```
 git clone https://[gitlab|github].com/exxcellent/programming-challenge.git
@@ -129,13 +152,13 @@ See what challenges are available by listing the branches present:
 git branch -a
 ```
 
-=== Switch to the branch of the challenge assigned
+==== Switch to the branch of the challenge assigned
 ```
 cd programming-challenge
 git checkout challenge-CHALLENGENAME
 ```
 
-=== Building and running
+==== Building and running
 The project scaffolds provides a Maven `pom.xml` as starting
 point. You should be able to start with any IDE or text editor
 you are convenient with.
@@ -154,7 +177,7 @@ To remove the compilation output::
 Or use your IDE functionality::
     to run & debug you program.
 
-== Submitting your results
+=== Submitting your results
 
 Ideally you provide your solutions as Git repository with
 appropriate commits and descriptions. If you have a GitLab.com
