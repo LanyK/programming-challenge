@@ -40,7 +40,7 @@ public class CSVDataLoader implements TableDataLoader {
 			this.delimiter = delimiter; // keep default otherwise
 		}
 		
-		this.path = csvFilePath; // TODO sanity checks now or just user responsibility?
+		this.path = csvFilePath;
 		this.expectsHeaderLine = headerLine;
 	}
 	
@@ -72,7 +72,7 @@ public class CSVDataLoader implements TableDataLoader {
 			this.getHeaderLine(); // retrieves the header line into cache. It would be more elegant to access the first
 			// element of the filestream non-destructively, but this is not currently supported by Stream. Converting to
 			// an Iterator is not an option either, since it removes Stream's ability to auto-close the underlying
-			// resource. TODO this is a strong indicator that getHeaderLine is currently doing two things and should be split.
+			// resource.
 		}
 		
 		return Files.lines(this.path).skip(this.expectsHeaderLine ? 1 : 0).map(line -> line.strip().split(this.delimiter));
