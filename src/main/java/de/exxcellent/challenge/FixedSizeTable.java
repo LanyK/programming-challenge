@@ -143,12 +143,14 @@ public class FixedSizeTable {
 		if (this.getRowCount() == 0 && !this.hasColumnHeaders()) {
 			// totally empty table -> allow anyway
 			this.rows.add(row);
+			return;
 		}
 		
 		// either has rows, headers, or both -> fixed size state
 		if (this.getColumnCount() != row.length)
 			throw new IllegalArgumentException(
 					"Tried to enter a row of diverging column count into a fixed size table.");
+		
 		this.rows.add(row);
 	}
 

@@ -37,8 +37,8 @@ class FixedSizeTableTest {
 		
 		emptyTable.addRow(new String[] {"elem1", "elem2", "elem3"});
 		emptyTable.addRow(new String[] {"elem4", "elem5", "elem6"});
-		assertEquals(emptyTable.getRowCount(),2);
-		assertEquals(emptyTable.getColumnCount(),3);
+		assertEquals(emptyTable.getRowCount(), 2);
+		assertEquals(emptyTable.getColumnCount(), 3);
 		
 		
 		FixedSizeTable headerTable = new FixedSizeTable(new String[] {"header1", "header2"});
@@ -55,6 +55,8 @@ class FixedSizeTableTest {
 	@Test
 	void editHeaderTest() {
 
+		System.out.println("  - Edit Header Test -");
+		
 		FixedSizeTable headerTable = new FixedSizeTable(new String[] {"header1", "header2"});
 		String new_header_name = "new_header1";
 		String new_header_name_2 = "new_header2";
@@ -68,6 +70,8 @@ class FixedSizeTableTest {
 
 	@Test
 	void tableAccessTest() {
+		
+		System.out.println("  - Table Access Test -");
 		
 		FixedSizeTable table = new FixedSizeTable(new String[] {"header_1", "header_2", "header_3"});
 		table.addRow(new String[] {"elem1", "elem2", "elem3"});
