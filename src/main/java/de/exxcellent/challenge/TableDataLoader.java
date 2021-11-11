@@ -20,7 +20,7 @@ public interface TableDataLoader {
 	 * 
 	 * @return a Stream providing <code>String[]</code> instances representing rows of data in a table
 	 * 
-	 * @exception IOException
+	 * @throws IOException
 	 */
 	public Stream<String[]> streamOfRows() throws IOException; // TODO rethink naming
 	
@@ -30,6 +30,7 @@ public interface TableDataLoader {
 	 * - The underlying data source was not empty
 	 * 
 	 * @return the <code>String[]</code> header line of column names, if it exists. 
+	 * @throws IOException 
 	 */
-	public Optional<String[]> getHeaderLine();
+	public Optional<String[]> getHeaderLine() throws IOException;
 }
