@@ -38,7 +38,6 @@ public class ChallengeTaskExecutor {
 			System.out.println("[ChallengeTaskExecutor] No args provided, exiting.");
 			return;
 		}
-		// TODO check the command first! no need to build a table for a nonexistant command
 		
 		String command = args[0];
 		
@@ -48,6 +47,11 @@ public class ChallengeTaskExecutor {
 		}
 		
 		command = command.substring(2); // remove the "--" from the command
+		
+		if (!this.registeredTasks.containsKey(command)) {
+			System.out.println("[ChallengeTaskExecutor] Command not registered, exiting.");
+			return;
+		}
 		
 		if (args.length < 2) {
 			System.out.println("[ChallengeTaskExecutor] No data source argument in position 2, exiting.");
@@ -68,16 +72,18 @@ public class ChallengeTaskExecutor {
 		
 		dataLoader.streamOfRows().forEach(row -> table.addRow(row));
 		
-		this.tryExecuteCommand(command, table);
+		this.execute(command, table);
 	}
 	
 	/**Tries to execute the given command. Does nothing if no command of this name was registered in this {@link ChallengeTaskExecutor}
 	 * 
 	 * @param command
 	 * @param dataTable
+	 * 
+	 * @throws NullPointerException if the command is not registered
 	 */
-	private void tryExecuteCommand(String command, FixedSizeTable dataTable) {
-		if (this.registeredTasks.containsKey(command)) this.registeredTasks.get(command).executeTask(dataTable);
+	private void execute(String command, FixedSizeTable dataTable) {
+		this.registeredTasks.get(command).executeTask(dataTable);
 	}
 	
 	/**Helper method testing whether a given <code>String</code> starts with "--" two minus signs.<br>
