@@ -1,3 +1,8 @@
+= Weatherdata challenge solution
+
+This branch is the 'master' branch for the solution of this coding challenge.
+Development will happen on `challenge-weatherdata-dev`.
+
 = eXXcellent programming challenge
 
 This repository provides the project scaffold for a simple
