@@ -38,6 +38,16 @@ class ChallengeTaskExecutorTest {
 		assertDoesNotThrow(() -> executor.executeTask(new String[] {"--weather", "src/main/resources/de/exxcellent/challenge/weather.csv"}));
 	}
 	
+	@Test
+	void footballChallengeTest() {
+		
+		System.out.println("  - Football Task Executor Generic Test -");
+
+		ChallengeTaskExecutor executor = new ChallengeTaskExecutor();
+		executor.registerTask("football", new FootballChallenge());
+		assertDoesNotThrow(() -> executor.executeTask(new String[] {"--football", "src/main/resources/de/exxcellent/challenge/football.csv"}));
+	}
+	
 	class DummyTask implements ChallengeTask {
 
 		@Override

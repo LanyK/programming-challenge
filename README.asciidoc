@@ -21,6 +21,9 @@ This flow is easily extendable via registering new **ChallengeTask** implementat
 
 Unit tests were implemented to test all components.
 
+=== Program Execution
+
+Run with either `--weather /path/to/weather/dat/file.csv` or `--football /path/to/football/dat/file.csv`.
 
 
 -- Original README below --

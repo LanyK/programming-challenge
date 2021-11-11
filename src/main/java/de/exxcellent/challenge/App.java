@@ -19,17 +19,12 @@ public final class App {
 
     	ChallengeTaskExecutor taskExecutor = new ChallengeTaskExecutor();
     	taskExecutor.registerTask("weather", new WeatherDataChallenge());
+    	taskExecutor.registerTask("football", new FootballChallenge());
     	
     	try {
 			taskExecutor.executeTask(args);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-//        String dayWithSmallestTempSpread = "Someday";     // Your day analysis function call …
-//        System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
-//
-//        String teamWithSmallestGoalSpread = "A good team"; // Your goal analysis function call …
-//        System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
     }
 }
