@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface ChallengeTask {
 	
-	public void executeTask(List<String> args);
+	public void executeTask(FixedSizeTable dataTable);
 }
