@@ -2,9 +2,7 @@ package de.exxcellent.challenge;
 
 import java.io.IOException;
 
-/**
- * The entry class for your solution. This class is only aimed as starting point and not intended as baseline for your software
- * design. Read: create your own classes and packages as appropriate.
+/**<code>App</code> solves the eXXcellent weather challenge. See <code>README</code> for details.
  *
  * @author Benjamin Schmid <benjamin.schmid@exxcellent.de>
  * @author Yannick Kaiser <yannick-kaiser@gmx.de>
@@ -12,7 +10,9 @@ import java.io.IOException;
 public final class App {
 
     /**
-     * This is the main entry method of your program.
+     * This is the main entry method of the program.<br>
+     * {@link ChallengeTask}s can be registered with the {@link ChallengeTaskExecutor} 
+     * to have them automatically be executed depending on the <code>--command</code> command line argument provided.
      * @param args The CLI arguments passed
      */
     public static void main(String... args) {
