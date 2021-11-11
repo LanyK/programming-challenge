@@ -75,7 +75,7 @@ public class ChallengeTaskExecutor {
 			table.setColumnHeaders(headerLine.get());
 		}
 		
-		dataLoader.streamOfRows().forEach(row -> table.addRow(row));
+		dataLoader.streamRows().forEach(row -> table.addRow(row));
 		
 		this.execute(command, table);
 	}

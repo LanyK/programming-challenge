@@ -10,10 +10,10 @@ import java.util.stream.Stream;
 /** {@link TableDataLoader} implementation which loads from a <code>.csv</code> file.<br>
  *  It assumes a default delimiter of <code>","</code>, which can also be set in the full constructor.<br><br>
  *  
- *  The constructor is lazy: No <code>I/O</code> actions happen until either {@link #getHeaderLine()} or {@link #streamOfRows()} 
+ *  The constructor is lazy: No <code>I/O</code> actions happen until either {@link #getHeaderLine()} or {@link #streamRows()} 
  *  has been called for the first time.<br><br>
  *  
- *  It is suggested to use <code>getHeaderLine</code> after <code>streamOfRows</code> to cut one file access from the process.
+ *  It is suggested to use <code>getHeaderLine</code> after <code>streamRows</code> to cut one file access from the process.
  * 
  * @author Yannick Kaiser <yannick-kaiser@gmx.de>
  */
@@ -27,7 +27,7 @@ public class CSVDataLoader implements TableDataLoader {
 	private boolean expectsHeaderLine = false;
 	
 	/**Create a new <code>CSVDataLoader</code> with a specified delimiter and headerLine setting.<br><br>
-	 * Access the rows of data with {@link #streamOfRows()} and retrieve the header line content with {@link #getHeaderLine()}.<br>
+	 * Access the rows of data with {@link #streamRows()} and retrieve the header line content with {@link #getHeaderLine()}.<br>
 	 * It is recommended to call {@link #getHeaderLine()} last to minimize <code>I/O</code> calls.
 	 * 
 	 * @param csvFilePath {@link Path} object pointing to the CSV file.
@@ -45,7 +45,7 @@ public class CSVDataLoader implements TableDataLoader {
 	}
 	
 	/**Create a new <code>CSVDataLoader</code> with a specified delimiter and headerLine setting.<br><br>
-	 * Access the rows of data with {@link #streamOfRows()} and retrieve the header line content with {@link #getHeaderLine()}.<br>
+	 * Access the rows of data with {@link #streamRows()} and retrieve the header line content with {@link #getHeaderLine()}.<br>
 	 * It is recommended to call {@link #getHeaderLine()} last to minimize <code>I/O</code> calls.<br><br>
 	 *
 	 * Equivalent to a call of <code>CSVDataLoader(csvFilePath, delimiter, false)</code>
@@ -64,7 +64,7 @@ public class CSVDataLoader implements TableDataLoader {
 	 * @throws IOException if the underlying file can't be read, or if the file is empty when a header is expected
 	 */
 	@Override
-	public Stream<String[]> streamOfRows() throws IOException {
+	public Stream<String[]> streamRows() throws IOException {
 					
 		// retrieve the first line separately on-the-fly when this method is called if applicable
 		if (this.expectsHeaderLine && this.headerCache.isEmpty()) {
@@ -81,7 +81,7 @@ public class CSVDataLoader implements TableDataLoader {
 	/** 
 	 * Retrieve the header line of column names from the underlying data source.<br>
 	 * This method only performs an <code>I/O</code> operation if this instance hasn't either<br>
-	 * - handed out a Stream via {@link #streamOfRows()}<br>
+	 * - handed out a Stream via {@link #streamRows()}<br>
 	 * - or invoked this method before.<br>
 	 * Otherwise, the header line is already cached.<br><br>
 	 * 

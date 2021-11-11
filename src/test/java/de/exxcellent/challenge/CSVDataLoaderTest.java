@@ -37,7 +37,7 @@ class CSVDataLoaderTest {
 
 		// header expected, but empty on streamOfRows
 		CSVDataLoader testSubject1 = new CSVDataLoader(emptyCSV, null, true);
-		Exception e1 = assertThrows(IOException.class, () -> testSubject1.streamOfRows().collect(Collectors.toList()));
+		Exception e1 = assertThrows(IOException.class, () -> testSubject1.streamRows().collect(Collectors.toList()));
 		assertEquals("CSVDataLoader tried to read the header line, but the file is empty", e1.getMessage());
 
 		// empty on getHeaderLine
@@ -53,7 +53,7 @@ class CSVDataLoaderTest {
 		System.out.println("  - Bad Path Test -");
 
 		CSVDataLoader testSubject = new CSVDataLoader(Path.of(""), null, true);
-		Exception e = assertThrows(Exception.class, () -> testSubject.streamOfRows().collect(Collectors.toList()));
+		Exception e = assertThrows(Exception.class, () -> testSubject.streamRows().collect(Collectors.toList()));
 	}
 
 	/**
@@ -67,10 +67,10 @@ class CSVDataLoaderTest {
 		// valid file, 2 rows x 3 columns with header
 		CSVDataLoader testSubject = new CSVDataLoader(validCSV, null, true);
 
-		assertDoesNotThrow(() -> assertEquals(testSubject.streamOfRows().count(), 2));
+		assertDoesNotThrow(() -> assertEquals(testSubject.streamRows().count(), 2));
 
 		try {
-			List<String[]> rows = testSubject.streamOfRows().collect(Collectors.toList());
+			List<String[]> rows = testSubject.streamRows().collect(Collectors.toList());
 			assertEquals(rows.get(0)[0], "Arsenal");
 			assertEquals(rows.get(0).length, 3);
 			assertEquals(rows.get(1)[2], "24");

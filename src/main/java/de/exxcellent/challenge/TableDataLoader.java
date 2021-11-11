@@ -22,7 +22,7 @@ public interface TableDataLoader {
 	 * 
 	 * @throws IOException
 	 */
-	public Stream<String[]> streamOfRows() throws IOException; // TODO rethink naming
+	public Stream<String[]> streamRows() throws IOException;
 	
 	/**<code>getHeaderLine</code> returns the header line if <br>
 	 * - The concrete <code>TableDataLoader</code> implementation supports it
