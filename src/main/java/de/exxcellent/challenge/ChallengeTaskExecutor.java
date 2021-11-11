@@ -31,6 +31,11 @@ public class ChallengeTaskExecutor {
 		this.registeredTasks.put(commandLineArgument, challengeTask);
 	}
 	
+	/** Execute the appropriate registered {@link ChallengeTask} depending on the command line arguments given.
+	 * 
+	 * @param args - expects the command line arguments of the application 
+	 * @throws IOException
+	 */
 	public void executeTask(String... args) throws IOException {
 		
 		
