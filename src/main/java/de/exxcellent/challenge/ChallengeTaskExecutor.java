@@ -21,6 +21,13 @@ public class ChallengeTaskExecutor {
 	
 	public ChallengeTaskExecutor() {}
 	
+	/** Register a ChallengeTask object under a given command name <code>name</code>.<br>
+	 *  {@link #executeTask(String...)} will run the task if provided with <code>--name</code> as an argument.
+	 *  Commands expect a reference to a data source as their second argument.
+	 * 
+	 * @param commandLineArgument
+	 * @param challengeTask
+	 */
 	public void registerTask(String commandLineArgument, ChallengeTask challengeTask) {
 		this.registeredTasks.put(commandLineArgument, challengeTask);
 	}
@@ -70,6 +77,12 @@ public class ChallengeTaskExecutor {
 		if (this.registeredTasks.containsKey(command)) this.registeredTasks.get(command).executeTask(dataTable);
 	}
 	
+	/**Helper method testing whether a given <code>String</code> starts with "--" two minus signs.<br>
+	 * This marks it as a task command.
+	 * 
+	 * @param arg
+	 * @return true if the argument starts with exactly "--"
+	 */
 	private static boolean isTaskCommand(String arg) {
 		return arg.substring(0, 2).compareTo("--") == 0;
 	}
