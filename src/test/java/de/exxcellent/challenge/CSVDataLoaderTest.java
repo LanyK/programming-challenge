@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Optional;
@@ -52,7 +53,7 @@ class CSVDataLoaderTest {
 		System.out.println("  - Bad Path Test -");
 
 		CSVDataLoader testSubject = new CSVDataLoader(Path.of(""), null, true);
-		Exception e = assertThrows(IOException.class, () -> testSubject.streamOfRows().collect(Collectors.toList()));
+		Exception e = assertThrows(UncheckedIOException.class, () -> testSubject.streamOfRows().collect(Collectors.toList()));
 	}
 
 	/**
