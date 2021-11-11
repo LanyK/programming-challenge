@@ -1,7 +1,7 @@
 = Weatherdata challenge solution
 
-This branch is the 'master' branch for the solution of this coding challenge.
-Development will happen on `challenge-weatherdata-dev`.
+This branch is the development branch for the solution of this coding challenge.
+(Partial) solutions will be merged into `challenge-weatherdata-solution`.
 
 = eXXcellent programming challenge
 
