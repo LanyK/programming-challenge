@@ -87,5 +87,10 @@ class FixedSizeTableTest {
 		String[] column = table.getColumn(2);
 		assertEquals(column[0], "elem3");
 		assertEquals(column[1], "elem6");
+		
+		assertDoesNotThrow(() -> table.getColumn("header_2"));
+		String[] namedColumn = table.getColumn("header_2");
+		assertEquals(namedColumn[0], "elem2");
+		assertEquals(namedColumn[1], "elem5");
 	}
 }

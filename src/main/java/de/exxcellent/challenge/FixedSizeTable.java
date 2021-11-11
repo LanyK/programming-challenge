@@ -174,7 +174,7 @@ public class FixedSizeTable {
 	 * The columns are indexed starting from 0.<br>
 	 * <br>
 	 * 
-	 * This method builds the column on request in O(n)
+	 * This method builds the resulting array in O(n)
 	 * 
 	 * @param columnIndex of the requested column
 	 * @return a single column of this {@link FixedSizeTable}
@@ -189,6 +189,39 @@ public class FixedSizeTable {
 		}
 
 		return column;
+	}
+	
+	/**
+	 * Does not include the header of this column, such that the height of the
+	 * returned <code>String[]</code> is equal to {@link #getRowCount()} <br>
+	 * The columns are indexed starting from 0.<br>
+	 * <br>
+	 * 
+	 * This method builds the resulting array in O(n)
+	 * 
+	 * @param header name of the requested column
+	 * @return a single column of this {@link FixedSizeTable}
+	 * 
+	 * @throws {@link IndexOutOfBoundsException}, {@link NoSuchElementException}
+	 */
+	public String[] getColumn(String header) {
+		if (!this.hasColumnHeaders()) throw new NoSuchElementException("Attempted to access a column via header name, when no headers are set.");
+		
+		String[] headers = this.columnHeaders.get();
+		int columnCount = this.getColumnCount();
+		int index;
+		
+		for(index = 0; index < columnCount; ++index) {
+			if (headers[index].compareTo(header.strip()) == 0) {
+				break;
+			}
+		}
+		
+		if (index == this.getColumnCount()) { // did not find header name
+			throw new NoSuchElementException("Unknown column header name.");
+		}
+		
+		return this.getColumn(index);
 	}
 
 	/**
