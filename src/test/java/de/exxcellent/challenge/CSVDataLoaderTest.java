@@ -53,7 +53,7 @@ class CSVDataLoaderTest {
 		System.out.println("  - Bad Path Test -");
 
 		CSVDataLoader testSubject = new CSVDataLoader(Path.of(""), null, true);
-		Exception e = assertThrows(UncheckedIOException.class, () -> testSubject.streamOfRows().collect(Collectors.toList()));
+		Exception e = assertThrows(Exception.class, () -> testSubject.streamOfRows().collect(Collectors.toList()));
 	}
 
 	/**
