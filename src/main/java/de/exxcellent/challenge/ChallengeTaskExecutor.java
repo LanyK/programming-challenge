@@ -30,44 +30,10 @@ public class ChallengeTaskExecutor {
 			return;
 		}
 		
-		int cmdIndex = 0;
-		int argIndex = 1;
+		String command = args[0];
+		String dataSource = args[1];
 		
-		String command = null;
-		List<String> taskArgs = null;
-		
-		outer:while (cmdIndex < args.length) {
-			
-			if (!isTaskCommand(args[cmdIndex])) continue;
-			
-			// found a task command (--command), now gather any arguments to it, 
-			// which are args up until the end of the args array,
-			// or up until the next task command.
-			
-			command = args[cmdIndex];
-			taskArgs = new ArrayList<>();
-			
-			while (argIndex < args.length) {
-				
-				if(isTaskCommand(args[argIndex])) { // parse next task command upon finding one
-					
-					executeCommand(command, taskArgs);
-					
-					command = null;
-					taskArgs = null;
-					
-					cmdIndex = argIndex;
-					argIndex = argIndex + 1;
-					continue outer;
-				} // else
-				
-				taskArgs.add(args[argIndex]);
-			}
-			
-			if (command != null) {
-				executeCommand(command, taskArgs);
-			}
-		}
+		executeCommand(command, List.of(args[1]));
 	}
 	
 	private static void executeCommand(String command, List<String> commandArgs) {
