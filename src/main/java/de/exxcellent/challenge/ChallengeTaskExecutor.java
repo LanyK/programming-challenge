@@ -3,7 +3,6 @@ package de.exxcellent.challenge;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -34,10 +33,12 @@ public class ChallengeTaskExecutor {
 	
 	public void executeTask(String... args) throws IOException {
 		
+		
 		if (args.length == 0) {
 			System.out.println("[ChallengeTaskExecutor] No args provided, exiting.");
 			return;
 		}
+		// TODO check the command first! no need to build a table for a nonexistant command
 		
 		String command = args[0];
 		
@@ -45,6 +46,8 @@ public class ChallengeTaskExecutor {
 			System.out.println("[ChallengeTaskExecutor] First launch argument not a --command, exiting.");
 			return;
 		}
+		
+		command = command.substring(2); // remove the "--" from the command
 		
 		if (args.length < 2) {
 			System.out.println("[ChallengeTaskExecutor] No data source argument in position 2, exiting.");
