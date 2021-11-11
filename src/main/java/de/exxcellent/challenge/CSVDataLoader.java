@@ -7,10 +7,15 @@ import java.util.Iterator;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-/** TODO mention default delimiter
+/** {@link TableDataLoader} implementation which loads from a <code>.csv</code> file.<br>
+ *  It assumes a default delimiter of <code>","</code>, which can also be set in the full constructor.<br><br>
+ *  
+ *  The constructor is lazy: No <code>I/O</code> actions happen until either {@link #getHeaderLine()} or {@link #streamOfRows()} 
+ *  has been called for the first time.<br><br>
+ *  
+ *  It is suggested to use <code>getHeaderLine</code> after <code>streamOfRows</code> to cut one file access from the process.
  * 
  * @author Yannick Kaiser <yannick-kaiser@gmx.de>
- *
  */
 public class CSVDataLoader implements TableDataLoader {
 
