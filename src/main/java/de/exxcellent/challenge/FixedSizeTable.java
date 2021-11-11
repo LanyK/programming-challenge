@@ -42,7 +42,7 @@ public class FixedSizeTable {
 	public FixedSizeTable(String[] columnHeaders) {
 		this.setColumnHeaders(columnHeaders);
 	}
-
+	
 	/**
 	 * @return the number of rows living in this Table, not counting column headers
 	 */
@@ -98,6 +98,7 @@ public class FixedSizeTable {
 		// always allowed when the table is empty, otherwise needs to adhere to the dimensionality of this Table
 		if (this.getRowCount() == 0 || columnHeaders.length == this.getColumnCount()) {
 			this.columnHeaders = Optional.of(columnHeaders);
+			return;
 		}
 		
 		// otherwise illegal	
@@ -138,6 +139,13 @@ public class FixedSizeTable {
 	 * @param row <code>String[]</code> array containing row entries
 	 */
 	public void addRow(String[] row) throws IllegalArgumentException {
+		
+		if (this.getRowCount() == 0 && !this.hasColumnHeaders()) {
+			// totally empty table -> allow anyway
+			this.rows.add(row);
+		}
+		
+		// either has rows, headers, or both -> fixed size state
 		if (this.getColumnCount() != row.length)
 			throw new IllegalArgumentException(
 					"Tried to enter a row of diverging column count into a fixed size table.");
