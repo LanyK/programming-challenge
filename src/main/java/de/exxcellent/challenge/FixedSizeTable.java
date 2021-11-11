@@ -1,6 +1,8 @@
 package de.exxcellent.challenge;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -241,13 +243,14 @@ public class FixedSizeTable {
 
 	@Override
 	public String toString() {
+		
 		StringBuilder repr = new StringBuilder();
 		if (this.hasColumnHeaders()) {
-			Stream.of(this.columnHeaders.get()).forEach(header -> repr.append(header));
+			repr.append(String.join(" | ", this.columnHeaders.get()));
 		}
 		for (String[] row : this.rows) {
 			repr.append("\n");
-			Stream.of(row).forEach(header -> repr.append(header));
+			repr.append(String.join(" | ", row));
 		}
 		return repr.toString();
 	}

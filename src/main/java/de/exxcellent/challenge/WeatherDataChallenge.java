@@ -16,8 +16,6 @@ public class WeatherDataChallenge implements ChallengeTask {
 	    // The maximum temperature is the second column `MxT`, the minimum
 	    // temperature the third column `MnT`.
 		
-		System.out.println(dataTable);
-		
 		int minSpread = Integer.MAX_VALUE;
 		int minSpreadDay = -1;
 		
