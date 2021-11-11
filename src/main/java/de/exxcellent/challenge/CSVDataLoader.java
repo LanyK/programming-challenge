@@ -56,6 +56,7 @@ public class CSVDataLoader implements TableDataLoader {
 	 * If the file has a header line, it is skipped and can be accessed with {@link #getHeaderLine()} instead.
 	 * 
 	 * @return a stream containing the rows of the underlying CSV file
+	 * @throws IOException if the underlying file can't be read, or if the file is empty when a header is expected
 	 */
 	@Override
 	public Stream<String[]> streamOfRows() throws IOException {
